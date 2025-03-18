@@ -8,25 +8,24 @@ const RABBITMQ_EXCHANGE = "user_event";
 const RABBITMQ_ROUTING_KEY = "user.created";
 
 export async function userCreatedEvent(user) {
-    const connection = await amqp.connect({
-        protocol: 'amqp',
-        hostname: process.env.RABBIT_HOST,
-        port: 5672,
-        username: process.env.RABBITMQ_USER,
-        password: process.env.RABBITMQ_PASS,
-    });
-    const channel = await connection.createChannel();
+    try {
+        const connection = await amqp.connect(RABBITMQ_URL);
+        const channel = await connection.createChannel();
 
-    //Declarar el exchange a usar en el servicio
-    await channel.assertExchange(RABBITMQ_EXCHANGE, "topic", {durable: true});
+        // Declarar el exchange
+        await channel.assertExchange(RABBITMQ_EXCHANGE, "topic", { durable: true });
 
-    //publicar el evento
-    const message = JSON.stringify(user);
-    channel.publish(RABBITMQ_EXCHANGE, RABBITMQ_ROUTING_KEY, Buffer.from(message));
+        // Publicar el evento
+        const message = JSON.stringify(user);
+        channel.publish(RABBITMQ_EXCHANGE, RABBITMQ_ROUTING_KEY, Buffer.from(message));
 
-    console.log(`[x] exchange "${RABBITMQ_EXCHANGE}", routing key "${RABBITMQ_ROUTING_KEY}": ${message}`);
+        console.log(`[x] Exchange "${RABBITMQ_EXCHANGE}", routing key "${RABBITMQ_ROUTING_KEY}": ${message}`);
 
-    setTimeout(()=> {
-        connection.close();
-    }, 500);
+        // Cerrar conexión con un pequeño delay
+        setTimeout(() => {
+            connection.close();
+        }, 500);
+    } catch (error) {
+        console.error('Error publicando el evento:', error.message);
+    }
 }
