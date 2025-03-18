@@ -145,6 +145,9 @@ public class ESBController {
         }
     }
 
+    // MAPEO DE LAS FUNCIONALIDADES DE CLIENTS, FUNCIONANDO CORRECTAMENTE
+
+
     @PostMapping("/createClient")
     public ResponseEntity<String> createClient(@RequestBody Client client,
         @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {

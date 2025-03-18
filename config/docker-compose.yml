@@ -1,5 +1,7 @@
-version: '3.8'
+# version: '3.8'
 services:
+        # Esto despliega el servicio de rabbit
+
   rabbitmq: 
     image: rabbitmq:management
     container_name: rabbitmq
@@ -9,3 +11,35 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
+    networks:
+      - service_network
+
+
+    # a continuacion se hara la configuracion necesaria para la configuracon de la BD
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306" # Puerto predeterminado de MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: pass # Contraseña del usuario root
+      MYSQL_ROOT_USER: user # Contraseña del usuario root
+      MYSQL_DATABASE: proyecto        # Nombre de la base de datos inicial
+      MYSQL_USER: user               # Usuario personalizado
+      MYSQL_PASSWORD: pass  # Contraseña para el usuario personalizado
+    volumes:
+      - mysql_data:/var/lib/mysql       # Volumen para persistir datos
+    restart: always
+    networks:
+      - service_network
+
+volumes:
+  mysql_data:
+
+networks:
+  service_network:
+    driver: bridge
+    name: service_network
+
+
