@@ -1,10 +1,10 @@
-HELP.md
+# Archivos de compilación y dependencias
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+# Archivos generados por STS (Spring Tool Suite)
 .apt_generated
 .classpath
 .factorypath
@@ -13,13 +13,13 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
+# Archivos generados por IntelliJ IDEA
+.idea/
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+# Archivos generados por NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -29,5 +29,34 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+# Archivos generados por VS Code
 .vscode/
+
+# Archivos de configuración de Spring Boot y otros
+/application.properties
+/application.yml
+application-*.properties
+application-*.yml
+
+# Logs y archivos temporales
+*.log
+/logs/
+/tmp/
+
+# Archivos de Docker
+**/docker-compose.override.yml
+**/docker-compose.yml
+**/.dockerignore
+**/docker/data/
+
+# Archivos de Maven
+.mvn/
+.settings/
+
+# Git
+.git/
+.gitignore
+
+
+
+!target/*.jar

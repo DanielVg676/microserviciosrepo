@@ -3,7 +3,7 @@ package com.utd.ti.soa.esb_service.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 // Dependencias para realizar la construccion de las peticiones get y post
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;    
@@ -21,7 +21,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 import com.utd.ti.soa.esb_service.model.Client;
 import com.utd.ti.soa.esb_service.model.User;
-import org.springframework.http.HttpStatus;
+// import org.springframework.http.HttpStatus;
 import com.utd.ti.soa.esb_service.utils.Auth;
 
 @RestController
@@ -72,7 +72,7 @@ public class ESBController {
 
         try {
             String response = webClient.get()
-                .uri("http://localhost:3003/api/users/getuser")
+                .uri("http://users:3003/api/users/getuser")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .exchangeToMono(clientResponse -> clientResponse.bodyToMono(String.class))
                 .doOnError(error -> System.out.println("Error: " + error.getMessage()))

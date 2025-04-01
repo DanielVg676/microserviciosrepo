@@ -50,7 +50,8 @@ services:
       
 networks:
   service_network:
-    external: true
+    driver: bridge
+    name: service_network
 
 
 

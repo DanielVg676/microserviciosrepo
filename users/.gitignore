@@ -1,1 +1,47 @@
-node_modules
+# Archivos de compilación y dependencias
+*.class
+*.jar
+*.war
+*.ear
+
+# Carpetas de dependencias
+**/target/
+**/build/
+**/.gradle/
+**/.mvn/
+**/node_modules/
+
+# Variables de entorno y configuraciones sensibles
+.env
+.env.local
+.env.*.local
+application.properties
+application.yml
+application-*.properties
+application-*.yml
+
+# Archivos de IDEs y herramientas
+/.idea/
+*.iml
+*.ipr
+*.iws
+/.vscode/
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Docker
+**/docker-compose.override.yml
+**/docker-compose.yml
+**/.dockerignore
+**/docker/data/
+
+# Logs y archivos temporales
+*.log
+/logs/
+/tmp/
+
+# Git
+.git/
+.gitignore
